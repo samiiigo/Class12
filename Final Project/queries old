@@ -1,0 +1,116 @@
+DROP DATABASE hotel;
+CREATE DATABASE hotel;
+USE hotel;
+
+CREATE TABLE customers(
+  cust_id INT  AUTO_INCREMENT NOT NULL PRIMARY KEY
+  ,name    VARCHAR(50) NOT NULL
+  ,address VARCHAR(50)
+  ,mobile  INT
+  ,email   VARCHAR(50) NOT NULL
+  ,pass    VARCHAR(50) NOT NULL
+);
+
+ALTER TABLE customers AUTO_INCREMENT=1000;
+
+INSERT INTO customers VALUES
+ (1000,'test','111111',11111111,'1','1')
+,(1001,'samyog','sarooj',54702457,'samyog@gmail.com','samyog')
+,(1002,'idris','sarooj',6543245,'idris@gmail.com','idris')
+,(1003,'hussain','muaji',8765443,'hussain@gmail.com','hussain')
+,(1004,'2','2222222222',2222222,'2','2')
+;
+
+CREATE TABLE rooms(
+   room_no        INTEGER    NOT NULL PRIMARY KEY 
+  ,availability   CHAR(3)    NOT NULL
+  ,type           VARCHAR(6) NOT NULL
+  ,wifi           CHAR(3)    NOT NULL
+  ,tv             CHAR(3)    NOT NULL
+  ,ac             CHAR(3)    NOT NULL
+  ,price          INTEGER    NOT NULL
+  ,Button         VARCHAR(4) NOT NULL
+);
+
+INSERT INTO rooms VALUES
+ (1,'yes','Single','no','no','no',200,'Book'),
+ (2,'yes','Single','no','no','no',200,'Book'),
+ (3,'yes','Single','no','no','yes',250,'Book'),
+ (4,'yes','Single','no','no','yes',250,'Book'),
+ (5,'yes','Single','no','yes','no',300,'Book'),
+ (6,'yes','Single','no','yes','no',300,'Book'),
+ (7,'yes','Single','yes','no','no',350,'Book'),
+ (8,'yes','Single','yes','no','no',350,'Book'),
+ (9,'yes','Single','no','yes','yes',400,'Book'),
+ (10,'yes','Single','no','yes','yes',400,'Book'),
+ (11,'yes','Single','yes','yes','no',450,'Book'),
+ (12,'yes','Single','yes','yes','no',450,'Book'),
+ (13,'yes','Single','yes','no','yes',500,'Book'),
+ (14,'yes','Single','yes','no','yes',500,'Book'),
+ (15,'yes','Single','yes','yes','yes',550,'Book'),
+ (16,'yes','Single','yes','yes','yes',550,'Book'),
+ (17,'yes','Double','no','no','no',250,'Book'),
+ (18,'yes','Double','no','no','no',250,'Book'),
+ (19,'yes','Double','no','no','yes',300,'Book'),
+ (20,'yes','Double','no','no','yes',300,'Book'),
+ (21,'yes','Double','no','yes','no',350,'Book'),
+ (22,'yes','Double','no','yes','no',350,'Book'),
+ (23,'yes','Double','yes','no','no',400,'Book'),
+ (24,'yes','Double','yes','no','no',400,'Book'),
+ (25,'yes','Double','no','yes','yes',450,'Book'),
+ (26,'yes','Double','no','yes','yes',450,'Book'),
+ (27,'yes','Double','yes','yes','no',500,'Book'),
+ (28,'yes','Double','yes','yes','no',500,'Book'),
+ (29,'yes','Double','yes','no','yes',550,'Book'),
+ (30,'yes','Double','yes','no','yes',550,'Book'),
+ (31,'yes','Double','yes','yes','yes',600,'Book'),
+ (32,'yes','Double','yes','yes','yes',600,'Book'),
+ (33,'yes','Triple','no','no','no',300,'Book'),
+ (34,'yes','Triple','no','no','no',300,'Book'),
+ (35,'yes','Triple','no','no','yes',350,'Book'),
+ (36,'yes','Triple','no','no','yes',350,'Book'),
+ (37,'yes','Triple','no','yes','no',400,'Book'),
+ (38,'yes','Triple','no','yes','no',400,'Book'),
+ (39,'yes','Triple','yes','no','no',450,'Book'),
+ (40,'yes','Triple','yes','no','no',450,'Book'),
+ (41,'yes','Triple','no','yes','yes',500,'Book'),
+ (42,'yes','Triple','no','yes','yes',500,'Book'),
+ (43,'yes','Triple','yes','yes','no',550,'Book'),
+ (44,'yes','Triple','yes','yes','no',550,'Book'),
+ (45,'yes','Triple','yes','no','yes',600,'Book'),
+ (46,'yes','Triple','yes','no','yes',600,'Book'),
+ (47,'yes','Triple','yes','yes','yes',650,'Book'),
+ (48,'yes','Triple','yes','yes','yes',650,'Book'),
+ (49,'yes','Quad','no','no','no',350,'Book'),
+ (50,'yes','Quad','no','no','no',350,'Book'),
+ (51,'yes','Quad','no','no','yes',400,'Book'),
+ (52,'yes','Quad','no','no','yes',400,'Book'),
+ (53,'yes','Quad','no','yes','no',450,'Book'),
+ (54,'yes','Quad','no','yes','no',450,'Book'),
+ (55,'yes','Quad','yes','no','no',500,'Book'),
+ (56,'yes','Quad','yes','no','no',500,'Book'),
+ (57,'yes','Quad','no','yes','yes',550,'Book'),
+ (58,'yes','Quad','no','yes','yes',550,'Book'),
+ (59,'yes','Quad','yes','yes','no',600,'Book'),
+ (60,'yes','Quad','yes','yes','no',600,'Book'),
+ (61,'yes','Quad','yes','no','yes',650,'Book'),
+ (62,'yes','Quad','yes','no','yes',650,'Book'),
+ (63,'yes','Quad','yes','yes','yes',700,'Book'),
+ (64,'yes','Quad','yes','yes','yes',700,'Book')
+;
+
+CREATE TABLE bookings
+(
+  booking_id    INT  PRIMARY KEY AUTO_INCREMENT,
+  cust_id       INT  NOT NULL,
+  room_no       INT  NOT NULL,
+  checkin_date  DATE NOT NULL,
+  checkout_date DATE NOT NULL,
+  no_stay       INT NOT NULL,
+  price         INT     NOT NULL,
+  paid          CHAR(1) NOT NULL Default 'n',
+  FOREIGN KEY (cust_id)  REFERENCES customers (cust_id),
+  FOREIGN KEY (room_no)  REFERENCES rooms     (room_no)
+);
+
+ALTER TABLE bookings AUTO_INCREMENT=10000;
